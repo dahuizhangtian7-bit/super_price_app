@@ -1,0 +1,18 @@
+<h1>価格登録</h1>
+
+<%= form_with model: @price, url: prices_path do |f| %>
+  <div>
+    <%= f.collection_select :item_id, @items, :id, :name, { prompt: '商品を選択してください' } %>
+  </div>
+
+  <div>
+    <%= f.collection_select :store_id, @stores, :id, :name, { prompt: '店舗を選択してください' } %>
+  </div>
+
+  <div>
+    <%= f.label :price, '価格(円)' %>
+    <%= f.text_field :price %>
+  </div>
+
+  <%= f.submit '登録する' %>
+<% end %>
