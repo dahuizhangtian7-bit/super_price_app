@@ -1,0 +1,10 @@
+<h1>店舗登録</h1>
+
+<%= form_with model: @store, url: stores_path do |f| %>
+  <div>
+    <%= f.label :name, '店舗名' %>
+    <%= f.text_field :name %>
+  </div>
+
+  <%= f.submit '登録する' %>
+<% end %>
