@@ -13,3 +13,5 @@
  *= require_tree .
  *= require_self
  */
+.min_price {background-color: #90EE90;}
+.max_price {background-color: #FF6B6B;}

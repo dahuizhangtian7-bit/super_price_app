@@ -1,7 +1,8 @@
 class ItemsController < ApplicationController
 
   def index
-    @items = Item.all
+    @items = Item.includes(prices: :store).all
+    @stores = Store.all
   end
 
   def new

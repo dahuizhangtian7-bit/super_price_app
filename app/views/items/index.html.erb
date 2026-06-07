@@ -1,27 +1,31 @@
 <h1>商品一覧</h1>
 
-<table>
+<table border="1">
   <thead>
     <tr>
       <th>商品名</th>
-      <th>カテゴリー</th>
+      <% @stores.each do |store| %>
+        <th><%= store.name %></th>
+      <% end %>
     </tr>
   </thead>
   <tbody>
-    <% @items.each do |item| %>
+  <% @items.each do |item| %>
       <tr>
         <td><%= item.name %></td>
-        <td><%= item.category.name %></td>
+        <% prices_by_store = @stores.map { |store| item.prices.find { |p| p.store_id == store.id } }.compact %>
+        <% min_price_obj = prices_by_store.min_by { |p| p.price } %>
+        <% max_price_obj = prices_by_store.max_by { |p| p.price } %>
+        <% @stores.each do |store| %>
+          <% price = item.prices.find { |p| p.store_id == store.id } %>
+          <% cell_class = if price && min_price_obj && max_price_obj && min_price_obj&.price != max_price_obj&.price
+                            if price.price == min_price_obj&.price then 'cheapest'
+                            elsif price.price == max_price_obj&.price then 'most-expensive'
+                            end
+                          end %>
+          <td class = "<%= cell_class %>"><%= price ? "#{price.price}円" : "-" %></td>
+        <% end %>
       </tr>
-    <% end %>
+  <% end %>
   </tbody>
 </table>
-<%= link_to new_item_path do %>
-<div>商品の新規登録</div>
-<% end %>
-<%= link_to new_store_path do %>
-<div>店舗の新規登録</div>
-<% end %>
-<%= link_to new_price_path do %>
-<div>価格の新規登録</div>
-<% end %>
