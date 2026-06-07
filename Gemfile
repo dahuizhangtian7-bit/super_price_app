@@ -68,4 +68,6 @@ end
 gem 'active_hash'
 gem 'pry-rails'
 
-gem "pg", "~> 1.6"
+group :production do
+  gem 'pg'
+end
