@@ -9,6 +9,7 @@ development:
   password:
   host: localhost
   database: super_price_app_development
+  host: 127.0.0.1
 
 test:
   <<: *default

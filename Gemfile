@@ -68,7 +68,7 @@ group :test do
 end
 gem 'active_hash'
 gem 'pry-rails'
-
+gem 'sassc-rails'
 group :production do
   gem 'pg'
 end

@@ -1,4 +1,4 @@
-<h1>商品一覧</h1>
+<h1>商品価格一覧</h1>
 
 <table border="1">
   <thead>
@@ -19,8 +19,8 @@
         <% @stores.each do |store| %>
           <% price = item.prices.find { |p| p.store_id == store.id } %>
           <% cell_class = if price && min_price_obj && max_price_obj && min_price_obj&.price != max_price_obj&.price
-                            if price.price == min_price_obj&.price then 'cheapest'
-                            elsif price.price == max_price_obj&.price then 'most-expensive'
+                            if price.price == min_price_obj&.price then 'min_price'
+                            elsif price.price == max_price_obj&.price then 'max_price'
                             end
                           end %>
           <td class = "<%= cell_class %>"><%= price ? "#{price.price}円" : "-" %></td>
