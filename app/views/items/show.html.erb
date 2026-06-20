@@ -1,0 +1,29 @@
+<h1>商品詳細画面</h1>
+
+<table border="1">
+  <thead>
+    <tr>
+      <th>商品名＼店舗名</th>
+      <% @stores.each do |store| %>
+        <th><%= store.name %></th>
+      <% end %>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= @item.name %></td>
+      <% prices_by_store = @stores.map { |store| @item.prices.find { |p| p.store_id == store.id } }.compact %>
+      <% min_price_obj = prices_by_store.min_by { |p| p.price } %>
+      <% max_price_obj = prices_by_store.max_by { |p| p.price } %>
+      <% @stores.each do |store| %>
+        <% price = @item.prices.find { |p| p.store_id == store.id } %>
+        <% cell_class = if price && min_price_obj && max_price_obj && min_price_obj&.price != max_price_obj&.price
+                          if price.price == min_price_obj&.price then 'min_price'
+                          elsif price.price == max_price_obj&.price then 'max_price'
+                          end
+                        end %>
+        <td class = "<%= cell_class %>"><%= price ? "#{price.price}円" : "-" %></td>
+      <% end %>
+      </tr>
+  </tbody>
+</table>

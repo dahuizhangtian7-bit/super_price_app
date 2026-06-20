@@ -3,7 +3,7 @@
 <table border="1">
   <thead>
     <tr>
-      <th>商品名</th>
+      <th>商品名＼店舗名</th>
       <% @stores.each do |store| %>
         <th><%= store.name %></th>
       <% end %>
@@ -12,7 +12,7 @@
   <tbody>
   <% @items.each do |item| %>
       <tr>
-        <td><%= item.name %></td>
+        <td><%= link_to item.name, item_path(item.id) %></td>
         <% prices_by_store = @stores.map { |store| item.prices.find { |p| p.store_id == store.id } }.compact %>
         <% min_price_obj = prices_by_store.min_by { |p| p.price } %>
         <% max_price_obj = prices_by_store.max_by { |p| p.price } %>

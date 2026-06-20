@@ -18,6 +18,11 @@ class ItemsController < ApplicationController
     end
   end
 
+  def show
+    @item = Item.includes(prices: :store).find(params[:id])
+    @stores = Store.all
+  end
+
   private
 
   def item_params
