@@ -1,0 +1,15 @@
+<h1>商品名変更</h1>
+
+<%= form_with model: @item do |f| %>
+  <div>
+    <%= f.label :name, '商品名' %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div>
+    <%= f.label :category_id, 'カテゴリー' %>
+    <%= f.collection_select :category_id, Category.all, :id, :name, { prompt: 'カテゴリーを選択してください' } %>
+  </div>
+
+  <%= f.submit '変更する' %>
+<% end %>
