@@ -33,6 +33,9 @@ class ItemsController < ApplicationController
     redirect_to root_path, notice: '商品名を変更しました'
   end
 
+  def destroy
+  end
+
   private
 
   def item_params
