@@ -1,7 +1,7 @@
 class Item < ApplicationRecord
 
-  has_many :prices
-  has_many :stores, through: :prices
+  has_many :prices, dependent: :destroy
+  has_many :stores, through: :prices, dependent: :destroy
 
   validates :name, presence: true
 
