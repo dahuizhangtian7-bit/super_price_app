@@ -21,6 +21,7 @@ class ItemsController < ApplicationController
   def show
     @item = Item.includes(prices: :store).find(params[:id])
     @stores = Store.all
+    @price = @item.prices
   end
 
   def edit

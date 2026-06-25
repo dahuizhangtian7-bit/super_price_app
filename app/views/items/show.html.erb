@@ -1,6 +1,7 @@
 <h1>商品詳細画面</h1>
 
 <%= link_to '商品名変更', edit_item_path(@item.id) %>
+<%= link_to '価格変更', edit_price_path(@price, item_id: @item.id)%>
 <%= link_to '商品削除', item_path(@item.id), data: { turbo_method: :delete } %>
 
 <table border="1">
